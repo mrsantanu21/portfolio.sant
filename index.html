@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Portfolio of Santanu Dey, a Software Engineer specializing in Full-Stack Web Development, AI, and Data Structures.">
+    <meta name="keywords" content="Software Engineer, Portfolio, Web Development, React, Node.js, AI, Santanu Dey, Computer Science">
+    <meta property="og:title" content="Santanu Dey - Software Engineer Portfolio">
+    <meta property="og:description" content="Explore the portfolio of Santanu Dey, showcasing projects in Web Development, AI, and more.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630">
+    <meta property="og:url" content="https://yourportfolio.com">
+
+    <title>Portfolio - Santanu Dey | Software Engineer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Admin Toolbar -->
+    <div class="admin-toolbar glass-panel" id="admin-toolbar">
+        <div class="admin-container">
+            <div class="admin-left">
+                <i class="fas fa-crown" style="color: var(--primary-gold); margin-right: 0.5rem;"></i>
+                <span class="admin-label">Admin Mode</span>
+            </div>
+            <div class="admin-actions">
+                <button class="admin-btn" id="toggle-admin-mode" title="Toggle Edit Mode">
+                    <i class="fas fa-edit"></i>
+                    <span class="admin-status">OFF</span>
+                </button>
+                <button class="admin-btn" id="export-data" title="Export Portfolio Data">
+                    <i class="fas fa-download"></i>
+                    <span>Export</span>
+                </button>
+                <button class="admin-btn" id="import-data" title="Import Portfolio Data">
+                    <i class="fas fa-upload"></i>
+                    <span>Import</span>
+                </button>
+                <button class="admin-btn danger" id="reset-data" title="Reset to Defaults">
+                    <i class="fas fa-undo"></i>
+                    <span>Reset</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background with animated gradient -->
+    <div class="background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Header/Navigation -->
+    <header class="header glass-panel">
+        <nav class="nav-container">
+            <div class="logo">
+                <h1 class="logo-text">Portfolio</h1>
+            </div>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#portfolio" class="nav-link" data-section="portfolio">Portfolio</a></li>
+                <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+            </ul>
+            <div class="header-actions">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Search..." class="search-input">
+                </div>
+                <a href="resume.pdf" class="resume-btn glass-button" download>
+                    <i class="fas fa-download"></i>
+                    <span>Resume</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Left Column - Main Content -->
+        <div class="content-left">
+            <!-- Hero Section -->
+            <section id="home" class="section hero-section">
+                <div class="hero-content glass-panel editable-section">
+                    <button class="edit-btn admin-only" data-edit="personal-info" title="Edit Personal Info">
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <h1 class="hero-title" id="hero-title">Welcome to My Portfolio</h1>
+                    <p class="hero-tagline" id="hero-tagline">Computer Science Engineer</p>
+                    <p class="hero-description" id="hero-description">
+                        Aspiring Software Engineer | Computer Science
+Learning DSA, AI, Web Development, Backend & Frontend
+                    </p>
+                    <div class="hero-actions">
+                        <button class="cta-button glass-button primary">
+                            <span>View My Work</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button class="cta-button glass-button secondary">
+                            <span>Get In Touch</span>
+                            <i class="fas fa-envelope"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Projects Section -->
+            <section id="portfolio" class="section projects-section">
+                <div class="section-header">
+                    <h2 class="section-title">My Projects</h2>
+                    <div class="section-controls">
+                        <button class="control-btn" id="prev-projects">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="control-btn" id="next-projects">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button class="control-btn" id="edit-projects">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="projects-grid" id="projects-container">
+                    <!-- Projects will be dynamically loaded -->
+                </div>
+
+                <div class="projects-actions">
+                    <button class="action-button glass-button" id="add-project">
+                        <i class="fas fa-plus"></i>
+                        <span>Add Project</span>
+                    </button>
+                    <button class="action-button glass-button" id="preview-projects">
+                        <i class="fas fa-eye"></i>
+                        <span>Preview</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="section experience-section">
+                <div class="section-header">
+                    <h2 class="section-title">Work Experience</h2>
+                    <button class="action-button glass-button admin-only" id="add-experience">
+                        <i class="fas fa-plus"></i>
+                        <span>Add Experience</span>
+                    </button>
+                </div>
+                <div class="experience-timeline" id="experience-container">
+                    <!-- Experience items will be dynamically loaded -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Right Column - Sidebar -->
+        <div class="content-right">
+            <!-- About Me Section -->
+            <section id="about" class="sidebar-section about-section glass-panel editable-section">
+                <button class="edit-btn admin-only" data-edit="about-info" title="Edit About Info">
+                    <i class="fas fa-pencil-alt"></i>
+                </button>
+                <div class="about-photo-container">
+                    <div class="photo-frame">
+                        <img src="https://via.placeholder.com/200" alt="Professional Photo" class="about-photo" id="profile-photo">
+                    </div>
+                </div>
+                <h2 class="about-name" id="about-name">Santanu Dey</h2>
+                <p class="about-title" id="about-title">Computer Science Engineer</p>
+                <p class="about-bio" id="about-bio">
+                    My motivation comes from creating and developing new software that turns ideas into real-world solutions. 
+                    Im passionate about learning new technologies, writing clean code, and growing as a developer.
+                </p>
+                <div class="about-drive">
+                    <h3>What Drives Me</h3>
+                    <p id="about-drive"> My motivation comes from creating and developing new software that turns ideas into real-world solutions. 
+                        Im passionate about learning new technologies, writing clean code, and growing as a developer.
+                    </p>
+                </div>
+                <div class="about-goals">
+                    <h3>Career Goals</h3>
+                    <p id="about-goals">
+                        To lead innovative projects, mentor fellow developers, and contribute 
+                        to open-source communities while building products that improve lives.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="sidebar-section skills-section glass-panel">
+                <div class="section-header">
+                    <h2 class="section-title">Skills & Tools</h2>
+                    <button class="action-button glass-button admin-only" id="add-skill" style="font-size: 0.85rem; padding: 0.4rem 1rem;">
+                        <i class="fas fa-plus"></i>
+                        <span>Add Skill</span>
+                    </button>
+                </div>
+                <div class="skills-container" id="skills-container">
+                    <!-- Skills will be dynamically loaded -->
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="sidebar-section contact-section glass-panel editable-section">
+                <button class="edit-btn admin-only" data-edit="contact-info" title="Edit Contact Info">
+                    <i class="fas fa-pencil-alt"></i>
+                </button>
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-methods" id="contact-methods">
+                    <a href="mailto:your.email@example.com" class="contact-link glass-button" id="contact-email">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                    </a>
+                    <a href="https://linkedin.com/in/yourprofile" target= "_blank" class="contact-link glass-button" id="contact-linkedin">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/yourusername" target="_blank" class="contact-link glass-button" id="contact-github">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://twitter.com/yourhandle" target="_blank" class="contact-link glass-button" id="contact-twitter">
+                        <i class="fab fa-twitter"></i>
+                        <span>Twitter</span>
+                    </a>
+                </div>
+                <button class="send-message-btn glass-button primary">
+                    <span>Send Message</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </section>
+        </div>
+    </main>
+
+    <!-- Project Modal -->
+    <div class="modal-overlay" id="project-modal">
+        <div class="modal-content glass-panel">
+            <button class="modal-close" id="close-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body" id="modal-body">
+                <!-- Project details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Project Modal -->
+    <div class="modal-overlay" id="add-project-modal">
+        <div class="modal-content glass-panel">
+            <button class="modal-close" id="close-add-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title">Add New Project</h2>
+            <form class="contact-form" id="add-project-form">
+                <div class="form-group">
+                    <label for="p-title">Project Title</label>
+                    <input type="text" id="p-title" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="p-subtitle">Subtitle</label>
+                    <input type="text" id="p-subtitle" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="p-image">Image URL</label>
+                    <input type="url" id="p-image" required class="form-input" placeholder="https://...">
+                </div>
+                <div class="form-group">
+                    <label for="p-desc">Description</label>
+                    <textarea id="p-desc" required class="form-input" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="p-tech">Technologies (comma separated)</label>
+                    <input type="text" id="p-tech" required class="form-input" placeholder="React, Node.js, ...">
+                </div>
+                <div class="form-group">
+                    <label for="p-demo">Demo Link</label>
+                    <input type="url" id="p-demo" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="p-github">GitHub Link</label>
+                    <input type="url" id="p-github" class="form-input">
+                </div>
+                <button type="submit" class="glass-button primary">
+                    <span>Save Project</span>
+                    <i class="fas fa-save"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Message Modal -->
+    <div class="modal-overlay" id="message-modal">
+        <div class="modal-content glass-panel">
+            <button class="modal-close" id="close-message-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title">Send Message</h2>
+            <form class="contact-form" id="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required class="form-input"></textarea>
+                </div>
+                <button type="submit" class="glass-button primary">
+                    <span>Send</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Personal Info Modal -->
+    <div class="modal-overlay" id="edit-personal-modal">
+        <div class="modal-content glass-panel">
+            <button class="modal-close" id="close-personal-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title">Edit Personal Information</h2>
+            <form class="contact-form" id="edit-personal-form">
+                <div class="form-group">
+                    <label for="edit-hero-title">Hero Title</label>
+                    <input type="text" id="edit-hero-title" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="edit-hero-tagline">Tagline/Title</label>
+                    <input type="text" id="edit-hero-tagline" class="form-input">
+               </div>
+                <div class="form-group">
+                    <label for="edit-hero-description">Hero Description</label>
+                    <textarea id="edit-hero-description" class="form-input" rows="3"></textarea>
+                </div>
+                <button type="submit" class="glass-button primary">
+                    <span>Save Changes</span>
+                    <i class="fas fa-save"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit About Info Modal -->
+    <div class="modal-overlay" id="edit-about-modal">
+        <div class="modal-content glass-panel">
+            <button class="modal-close" id="close-about-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title">Edit About Information</h2>
+            <form class="contact-form" id="edit-about-form">
+                <div class="form-group">
+                    <label for="edit-about-name">Name</label>
+                    <input type="text" id="edit-about-name" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="edit-about-title">Professional Title</label>
+                    <input type="text" id="edit-about-title" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="edit-about-bio">Bio</label>
+                    <textarea id="edit-about-bio" class="form-input" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="edit-about-drive">What Drives Me</label>
+                    <textarea id="edit-about-drive" class="form-input" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="edit-about-goals">Career Goals</label>
+                    <textarea id="edit-about-goals" class="form-input" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="edit-profile-photo">Profile Photo URL</label>
+                    <input type="url" id="edit-profile-photo" class="form-input">
+                </div>
+                <button type="submit" class="glass-button primary">
+                    <span>Save Changes</span>
+                    <i class="fas fa-save"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Contact Info Modal -->
+    <div class="modal-overlay" id="edit-contact-modal">
+        <div class="modal-content glass-panel">
+            <button class="modal-close" id="close-contact-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title">Edit Contact Information</h2>
+            <form class="contact-form" id="edit-contact-form">
+                <div class="form-group">
+                    <label for="edit-contact-email">Email</label>
+                    <input type="email" id="edit-contact-email" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="edit-contact-linkedin">LinkedIn URL</label>
+                    <input type="url" id="edit-contact-linkedin" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="edit-contact-github">GitHub URL</label>
+                    <input type="url" id="edit-contact-github" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="edit-contact-twitter">Twitter URL</label>
+                    <input type="url" id="edit-contact-twitter" class="form-input">
+                </div>
+                <button type="submit" class="glass-button primary">
+                    <span>Save Changes</span>
+                    <i class="fas fa-save"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Experience Modal -->
+    <div class="modal-overlay" id="experience-modal">
+        <div class="modal-content glass-panel">
+            <button class="modal-close" id="close-experience-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title" id="experience-modal-title">Add Experience</h2>
+            <form class="contact-form" id="experience-form">
+                <input type="hidden" id="experience-id">
+                <div class="form-group">
+                    <label for="exp-role">Role/Position</label>
+                    <input type="text" id="exp-role" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="exp-company">Company Name</label>
+                    <input type="text" id="exp-company" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="exp-company-link">Company Website</label>
+                    <input type="url" id="exp-company-link" class="form-input" placeholder="https://example.com">
+                </div>
+                <div class="form-group">
+                    <label for="exp-date">Date Range</label>
+                    <input type="text" id="exp-date" required class="form-input" placeholder="2020 - 2022">
+                </div>
+                <div class="form-group">
+                    <label for="exp-description">Description</label>
+                    <textarea id="exp-description" required class="form-input" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exp-technologies">Technologies (comma separated)</label>
+                    <input type="text" id="exp-technologies" required class="form-input" placeholder="React, Node.js, AWS">
+                </div>
+                <div class="form-group">
+                    <label for="exp-achievements">Key Achievements (one per line)</label>
+                    <textarea id="exp-achievements" class="form-input" rows="4" placeholder="Increased performance by 50%&#10;Led team of 5 developers"></textarea>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <button type="submit" class="glass-button primary" style="flex: 1;">
+                        <span>Save</span>
+                        <i class="fas fa-save"></i>
+                    </button>
+                    <button type="button" class="glass-button danger admin-only" id="delete-experience" style="flex: 0;">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Skill Modal -->
+    <div class="modal-overlay" id="skill-modal">
+        <div class="modal-content glass-panel">
+            <button class="modal-close" id="close-skill-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title" id="skill-modal-title">Add Skill</h2>
+            <form class="contact-form" id="skill-form">
+                <input type="hidden" id="skill-old-name">
+                <div class="form-group">
+                    <label for="skill-name">Skill Name</label>
+                    <input type="text" id="skill-name" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="skill-icon">Icon Class (Font Awesome)</label>
+                    <input type="text" id="skill-icon" required class="form-input" placeholder="fab fa-react">
+                    <small style="color: var(--text-secondary); font-size: 0.85rem;">Browse icons at <a href="https://fontawesome.com/icons" target="_blank">fontawesome.com/icons</a></small>
+                </div>
+                <div class="form-group">
+                    <label for="skill-level">Proficiency Level: <span id="skill-level-display">50</span>%</label>
+                    <input type="range" id="skill-level" min="0" max="100" value="50" class="form-input" style="cursor: pointer;">
+                </div>
+                <div class="form-group">
+                    <label for="skill-color">Color</label>
+                    <input type="color" id="skill-color" value="#4FC3F7" class="form-input" style="height: 50px; cursor: pointer;">
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <button type="submit" class="glass-button primary" style="flex: 1;">
+                        <span>Save</span>
+                        <i class="fas fa-save"></i>
+                    </button>
+                    <button type="button" class="glass-button danger admin-only" id="delete-skill" style="flex: 0;">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hidden File Input for Import -->
+    <input type="file" id="import-file-input" accept=".json" style="display: none;">
+
+    <script src="script.js"></script>
+    <script src="admin-system.js"></script>
+</body>
+</html>
