@@ -1,6 +1,6 @@
 # Liquid Glass Portfolio
 
-just for Practice 
+Practice project 
 ## ✨ Features
 
 ### Design
