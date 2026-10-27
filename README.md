@@ -1,7 +1,6 @@
 # Liquid Glass Portfolio
 
-A modern, premium portfolio website featuring **Liquid Glass + Android 16** design aesthetics with glassmorphism effects, smooth animations, and a fully responsive layout.
-
+just for Practice 
 ## ✨ Features
 
 ### Design
